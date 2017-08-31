@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
 
   expose_decorated(:movies) { Movie.all }
   expose(:movie)
+  expose(:comments) {Comment.all}
 
   def send_info
     MovieInfoMailer.send_info(current_user, movie).deliver_now

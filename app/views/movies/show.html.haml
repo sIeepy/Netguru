@@ -2,4 +2,19 @@
 .jumbotron
   = movie.description
 - if user_signed_in?
-  %p= link_to 'Email me details about this movie', send_info_movie_path(movie), class: 'btn btn-sm btn-default'
+  .text-center
+    %p= link_to 'Email me details about this movie', send_info_movie_path(movie), class: 'btn btn-sm btn-default'
+    = render "comments/form", movie: movie, comment: Comment.new(movie_id: movie.id, user_id: current_user.id)
+%h3.text-center
+  Comments
+%table.table
+  %thead
+  %tbody
+    %tr
+    - comments.each do |comment|
+      %td= comment.text
+      %td= comment.decorate.user_name
+      %td
+        = link_to [movie, comment], method: :delete do
+          %button.btn.btn-default
+            = fa_icon "times"
