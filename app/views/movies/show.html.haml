@@ -9,12 +9,13 @@
   Comments
 %table.table
   %thead
-  %tbody
-    %tr
-    - comments.each do |comment|
+  - comments.each do |comment|
+    %tbody
+      %tr
       %td= comment.text
-      %td= comment.decorate.user_name
-      %td
-        = link_to [movie, comment], method: :delete do
-          %button.btn.btn-default
-            = fa_icon "times"
+      %td.col-lg-4= comment.decorate.user_name
+      %td.col-lg-1
+        - if current_user.id == comment.user_id
+          = link_to [movie, comment], method: :delete do
+            %button.btn.btn-default
+              = fa_icon "times"
