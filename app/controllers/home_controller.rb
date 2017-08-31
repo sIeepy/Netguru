@@ -1,5 +1,3 @@
 class HomeController < ApplicationController
-  def welcome
-    binding.pry
-   end
+  def welcome; end
 end
