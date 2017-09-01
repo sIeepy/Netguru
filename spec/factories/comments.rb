@@ -4,4 +4,8 @@ FactoryGirl.define do
     user
     movie
   end
+
+  factory :comment_invalid, parent: :comment do
+    text nil
+  end
 end
