@@ -6,7 +6,7 @@ RSpec.describe CommentsController, type: :controller do
 
   before do
     sign_in user
-    @attrs = FactoryGirl.attributes_for(:comment, movie_id: :movie)
+    @attrs = FactoryGirl.attributes_for(:comment, movie_id: :movie, user: user)
     @attrs_invalid = FactoryGirl.attributes_for(:comment_invalid, movie_id: :movie)
   end
 
