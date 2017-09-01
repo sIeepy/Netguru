@@ -22,7 +22,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  has_many :comment
+  has_many :comments
 
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
+
+  scope :toplisted, -> {
+  select('users.id, users.name, users.created_at, COUNT(comments.id) AS comments_count')
+      .joins(:comments)
+      .where('comments.created_at' => (Time.now - 7.days)..Time.now)
+      .group(:id)
+      .limit(10)
+  }
 end

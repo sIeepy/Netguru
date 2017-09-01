@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
 
   root "home#welcome"
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
       get :export
     end
   end
+
+  get '/top10', to: 'users#toplist'
 end
