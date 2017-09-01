@@ -5,4 +5,8 @@ class CommentDecorator < Draper::Decorator
     user = User.find_by(id: object.user_id)
     return user.name
   end
+
+  def author?
+    return true if h.current_user.id == object.user_id
+  end
 end

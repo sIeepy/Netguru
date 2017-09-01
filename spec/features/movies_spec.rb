@@ -1,6 +1,7 @@
 require "rails_helper"
 
-describe "Movies requests", type: :request do
+describe "Movies requests", type: :feature do
+
   describe "movies list" do
     it "displays right title" do
       visit "/movies"

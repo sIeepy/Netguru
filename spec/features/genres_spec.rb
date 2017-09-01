@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Genres requests", type: :request do
+describe "Genres requests", type: :feature do
   let!(:genres) { create_list(:genre, 5, :with_movies) }
 
   describe "genre list" do

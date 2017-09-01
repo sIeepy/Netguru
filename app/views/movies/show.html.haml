@@ -1,4 +1,3 @@
-%h1= movie.title
 .jumbotron
   = movie.description
 - if user_signed_in?
@@ -14,8 +13,7 @@
       %tr
       %td= comment.text
       %td.col-lg-4= comment.decorate.user_name
-      %td.col-lg-1
-        - if current_user.id == comment.user_id
-          = link_to [movie, comment], method: :delete do
-            %button.btn.btn-default
-              = fa_icon "times"
+      - if user_signed_in?
+        %td.col-lg-1
+          - if comment.decorate.author?
+            = link_to 'Delete', [movie, comment], method: :delete, class: 'btn btn-default', id: 'delete'
