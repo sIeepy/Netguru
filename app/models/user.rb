@@ -29,7 +29,7 @@ class User < ApplicationRecord
   scope :toplisted, -> {
   select('users.id, users.name, COUNT(comments.id) AS comments_count')
       .joins(:comments)
-      .where('comments.created_at' => (Time.now - 7.days)..Time.now)
+      .where('comments.created_at' => (Time.zone.now - 7.days)..Time.zone.now)
       .group(:id)
       .limit(10)
       .order('comments_count DESC')
