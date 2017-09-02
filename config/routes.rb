@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
-
+  # get 'profile', action: :show, controller: 'users'
+  get 'toplist', to: 'users#toplist'
   root "home#welcome"
   resources :genres, only: :index do
     member do
@@ -17,6 +18,4 @@ Rails.application.routes.draw do
       get :export
     end
   end
-
-  get '/top10', to: 'users#toplist'
 end

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   expose(:comment, attributes: :comment_params)
 
   def create
-    comment = current_user.comment.build(comment_params)
+    comment = current_user.comments.build(comment_params)
     if comment.save
       redirect_to movie_path(params[:movie_id]), notice: "Comment was succesfully created"
     else

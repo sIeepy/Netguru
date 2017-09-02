@@ -1,3 +1,14 @@
-- @top_users.each_with_index do |top, i|
-  =top.name
-  =top.comments_count
+.row
+  %h1.text-center
+    This Week Top 10
+  %h3.text-center
+    %table.table.scss
+      %thead
+        %tr
+          %th User name
+          %th Comments quantity
+      - @top_users.each_with_index do |top, i|
+        %tbody
+          %tr
+            %td= top.name
+            %td= top.comments_count
