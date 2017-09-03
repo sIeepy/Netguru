@@ -7,7 +7,6 @@ feature 'user visit toplist' do
 
   it 'returns only ten users' do
     visit '/toplist'
-    save_and_open_page
     expect(page).to have_selector('table tbody tr' , count: 10)
   end
 end

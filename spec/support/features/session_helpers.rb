@@ -25,5 +25,10 @@ module Features
     def visit_movie_page
       visit '/movies/' + movie.id.to_s
     end
+
+    def create_comment
+      fill_in 'comment_text', with: Faker::Lorem.sentence
+      click_button 'Create comment'
+    end
   end
 end

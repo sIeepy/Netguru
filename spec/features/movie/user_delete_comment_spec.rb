@@ -10,7 +10,7 @@ feature 'User delete comment' do
     create(:comment, user: user, movie: movie)
     visit_movie_page
     expect(page).to have_selector('table tr', count: 6)
-    click_link 'Delete'
+    click_on(id: 'delete')
     expect(page).to have_selector('table tr', count: 5)
   end
 

@@ -13,26 +13,24 @@ feature 'log in user' do
 
   it 'can create comment' do
     visit_movie_page
-    fill_in 'comment_text', with: Faker::Lorem.sentence
-    click_button 'Create comment'
+    create_comment
     expect(page).to have_selector('table tr', count: 6)
   end
+  
   context 'can add only one comment' do
     before { create(:comment, user: user, movie: movie) }
 
     it 'can not add another comment' do
       visit_movie_page
-      fill_in 'comment_text', with: Faker::Lorem.sentence
-      click_button 'Create comment'
+      create_comment
       expect(page).to have_selector('table tr', count: 6)
     end
 
     it 'can create another comment when he delete previous' do
       visit_movie_page
-      click_link 'Delete'
+      click_on(id: 'delete')
       expect(page).to have_selector('table tr', count: 5)
-      fill_in 'comment_text', with: Faker::Lorem.sentence
-      click_button 'Create comment'
+      create_comment
       expect(page).to have_selector('table tr', count: 6)
     end
   end

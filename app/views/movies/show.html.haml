@@ -16,4 +16,5 @@
       - if user_signed_in?
         %td.col-lg-1
           - if comment.decorate.author?
-            = link_to 'Delete', [movie, comment], method: :delete, class: 'btn btn-default', id: 'delete'
+            = link_to [movie, comment], method: :delete, class: 'btn btn-default', id: 'delete' do
+              = fa_icon "times"
