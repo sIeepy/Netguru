@@ -10,7 +10,7 @@
   - comments.each do |comment|
     %tbody
       %tr
-      %td= comment.decorate.creation_date
+      %td.col-lg-2= comment.decorate.creation_date
       %td= comment.text
       %td.col-lg-4= comment.decorate.user_name
       - if user_signed_in?
