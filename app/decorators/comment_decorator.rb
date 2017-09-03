@@ -9,4 +9,8 @@ class CommentDecorator < Draper::Decorator
   def author?
     return true if h.current_user.id == object.user_id
   end
+
+  def creation_date
+    object.created_at.strftime("%d-%m-%Y %H:%M")
+  end
 end
