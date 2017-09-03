@@ -17,7 +17,6 @@ describe User do
 
   context 'users comments in toplist' do
     let(:user) { create(:user) }
-    let(:movie) { create(:movie, 5)}
 
     it 'comment is too old' do
       days = (Time.zone.now - 8.days)
@@ -32,11 +31,9 @@ describe User do
     end
 
     it 'one user has more comments' do
-      user2 = FactoryGirl.create(:user)
-      FactoryGirl.create(:comment, 2, user: user)
-      FactoryGirl.create(:comment, 4, user: user2)
-      binding.pry
-      expect(User.toplisted.first).to eq user2.name
+      user1 = FactoryGirl.create(:user_with_comments, comments_count: 4)
+      FactoryGirl.create(:user_with_comments, comments_count: 2)
+      expect(User.toplisted.first.name).to eq user1.name
     end
   end
 end

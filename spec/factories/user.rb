@@ -5,9 +5,13 @@ FactoryGirl.define do
     confirmed_at { Time.zone.now }
     password {Faker::Internet.password(8)}
 
-    trait :with_comments do
-      after(:create) do |user|
-        create_list :comment, rand(1..15), user: user
+    factory :user_with_comments do
+      transient do
+        comments_count rand(1..15)
+      end
+
+      after(:create) do |user, evaluator|
+        create_list :comment, evaluator.comments_count, user: user
       end
     end
   end
